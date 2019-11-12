@@ -1,4 +1,4 @@
-var Game = {
+const Game = {
   canvas: undefined,
   ctx: undefined,
   fps: 60,
@@ -63,12 +63,25 @@ var Game = {
   //reseteamos todos los elementos del juego para empezar en un estado limpio
   reset: function() {
     this.background = new Background(this.canvas.width, this.canvas.height, this.ctx);
-    this.player = new Player(this.canvas.width, this.canvas.height, this.ctx, this.keys);
+    this.player = new Player(this.canvas.width, this.canvas.height, this.ctx);
+    this.setListeners()
     this.scoreBoard = ScoreBoard;
     this.framesCounter = 0;
     this.obstacles = [];
     this.score = 0;
   },
+
+  setListeners() {
+    document.onkeydown = (event) => {
+      if (event.keyCode === this.keys.TOP_KEY && this.player.y == this.player.y0) {
+        this.player.y -= 5;
+        this.player.vy -= 10;
+      } else if (event.keyCode == this.keys.SPACE) {
+        this.player.shoot();
+      }
+    }
+  },
+
   //chequea si ha sucedido una colisión
   isCollision: function() {
     // colisiones genéricas

@@ -1,5 +1,5 @@
 //este literal mantiene el marcador del juego con su puntuación
-var ScoreBoard = {
+const ScoreBoard = {
   ctx: undefined,
   init: function(ctx) {
     ctx.font = "30px sans-serif";

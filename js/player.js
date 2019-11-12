@@ -25,8 +25,6 @@ class Player {
     this.vy = 1;
 
     this.bullets = [];
-
-    this.setListeners();
   }
 
   draw(framesCounter) {
@@ -54,17 +52,6 @@ class Player {
       bullet.draw();
       bullet.move();
     });
-  }
-
-  setListeners() {
-    document.onkeydown = function(event) {
-      if (event.keyCode === this.keys.TOP_KEY && this.y == this.y0) {
-        this.y -= 5;
-        this.vy -= 10;
-      } else if (event.keyCode == this.keys.SPACE) {
-        this.shoot();
-      }
-    }.bind(this);
   }
 
   shoot() {
